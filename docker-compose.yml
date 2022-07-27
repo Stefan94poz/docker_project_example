@@ -38,6 +38,15 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3050:80"
+  swagger-ui:
+    image: swaggerapi/swagger-ui
+    container_name: swagger_ui_container
+    ports:
+      - "50:5050"
+    volumes:
+      - ./doc:/usr/share/nginx/html/doc
+    environment:
+      API_URL: doc/openapi.yaml
 volumes:
   postgres:
     name: nest-prisma-docker-db

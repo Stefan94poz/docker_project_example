@@ -17,7 +17,13 @@ PHONY += up
 up:			## Launch project
 up:
 	$(call colorecho, "\nStarting project on $(OS)")
-	@docker-compose up -d
+	@docker-compose up -d 
+
+PHONY += console
+console:			## Launch project
+console:
+	$(call colorecho, "\nStarting project on $(OS)")
+	@docker-compose up
 
 PHONY += down
 down: 			## Tear down project
