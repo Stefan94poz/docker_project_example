@@ -74,18 +74,12 @@ logs:
 ##API Database commands
 ##
 
-PHONY += migration
-migration:	## Create Migration files
-migration:
-	$(call colorecho, "\nCreating Database Migration:\n")
-	@docker exec tikeon-php bin/console doctrine:cache:clear-metadata
-	@docker exec tikeon-php bin/console doctrine:migrations:diff
 
 PHONY += migrate
 migrate:		## Migrate database
 migrate:
 	$(call colorecho, "\nMigrating Project Database\n")
-	@docker exec tikeon-php bin/console doctrine:migrations:migrate --no-interaction
+	@docker exec nest-api npx prisma migrate dev --name init
 
 define colorecho
 	@tput -T xterm setaf 3
